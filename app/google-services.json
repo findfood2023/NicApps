@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "768532297329",
+    "project_id": "find-food-2023",
+    "storage_bucket": "find-food-2023.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:768532297329:android:57bf4ab22b20292c50cdd0",
+        "android_client_info": {
+          "package_name": "com.example.nicapps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "768532297329-nbgksgc0nt6q28qq0utqbldqregqd6gj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFq-BXdKj3A6SyI2McTEuvBz46q11m8x0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "768532297329-nbgksgc0nt6q28qq0utqbldqregqd6gj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">NicApp\'s</string>
+    <string-array name="Barrios">
+        <item>---- Seleccione un barrio ----</item>
+        <item>Guadalupe</item>
+        <item>San Felipe</item>
+        <item>El Sagrario (centro León)</item>
+        <item>San Juan</item>
+        <item>San Sebastian</item>
+        <item>El Calvario </item>
+        <item>Laborio</item>
+        <item>Sutiaba</item>
+        <item>El Calvarito</item>
+
+    </string-array>
+</resources>

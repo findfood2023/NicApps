@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/degradado_fondo"
+    android:orientation="vertical"
+    tools:context=".pantalla_perfil" >
+
+    <ImageButton
+        android:id="@+id/bt_atras_perfil"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/degradado_fondo2"
+        app:srcCompat="@drawable/im18_nuevo" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="match_parent"
+            android:layout_height="246dp"
+            android:layout_marginBottom="15dp"
+            app:srcCompat="@drawable/perfil" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/roboto"
+            android:text="Perfil del Usuario"
+            android:textColor="#F2CB05"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/ct_nombrecompleto3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="#F2CB05"
+            android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="Nombre del Usuario"
+            android:inputType="textPersonName"
+            android:textColor="#F4EAEA"
+            android:textColorHint="#E4E0E0" />
+
+        <EditText
+            android:id="@+id/ct_telefono4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="#F2CB05"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="Numero de teléfono"
+            android:inputType="phone"
+            android:maxLength="8"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/ct_contrasena8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="#F2CB05"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="Contraseña"
+            android:inputType="textPassword"
+            android:maxLength="16"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#EDE9E9" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/roboto"
+            android:text="Perfil del Local"
+            android:textColor="#F2CB05"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/ct_nombreusuario4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="#F2CB05"
+            android:digits="ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="Nombre del Local"
+            android:inputType="textPersonName"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#F8F4F4" />
+
+        <EditText
+            android:id="@+id/ct_telefono5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="#F2CB05"
+            android:ems="10"
+            android:enabled="false"
+            android:hint="Numero del Local"
+            android:inputType="phone"
+            android:maxLength="8"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#F3EFEF" />
+
+    </LinearLayout>
+</LinearLayout>
