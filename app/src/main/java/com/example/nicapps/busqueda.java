@@ -35,7 +35,7 @@ public class busqueda extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_busqueda);
 
-        int images[] = {R.drawable.asadospeli, R.drawable.charlies, R.drawable.imabite, R.drawable.sundance, R.drawable.suaiamgen,
+        int images[] = {R.drawable.asadospeli, R.drawable.charlies, R.drawable.sacuanjoche, R.drawable.sundance, R.drawable.suaiamgen,
                 R.drawable.sesteo, R.drawable.desayun};
         carrusel1 = findViewById(R.id.carrusel1);
 
@@ -54,37 +54,33 @@ public class busqueda extends AppCompatActivity {
         });
 
         busqueda = findViewById(R.id.barra_busqueda);
-        busqueda.setOnClickListener(new View.OnClickListener() {
+        busqueda.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            String query;
+           @Override
+            public boolean onQueryTextSubmit(String query) {
+               Intent intent = new Intent(com.example.nicapps.busqueda.this, MainActivity3.class);
+               query = busqueda.getQuery().toString().toLowerCase(Locale.ROOT).trim();
+               if(query.equals("comedor el pinolero") || query.equals("rincon pinolero")
+                       || query.equals("el sopon") || query.equals("tapadrisimo nicaragua")
+                       || query.equals("la basilica")|| query.equals("la avenida")|| query.equals("23 bar")
+                       || query.equals("la avaenida")|| query.equals("la avaenida")|| query.equals("la avaenida")
+                       || query.equals("la avaenida")|| query.equals("la avaenida")|| query.equals("la avaenida")
+                       || query.equals("la avaenida")|| query.equals("la avaenida")|| query.equals("la avaenida")
+                       || query.equals("la avaenida")|| query.equals("la avaenida")|| query.equals("la avaenida")
+                       || query.equals("la avaenida")|| query.equals("la avaenida")|| query.equals("la avaenida")
+                       || query.equals("la avaenida")) {
+                   intent.putExtra("nombre", query);
+               }else Toast.makeText(busqueda.this, "No se encontro el restaurante", Toast.LENGTH_SHORT).show();
+               startActivity(intent);
+                return true;
+            }
+
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(com.example.nicapps.busqueda.this, MainActivity3.class);
-                String query = busqueda.getQuery().toString().toLowerCase(Locale.ROOT).trim();
-                if(query.equals("comedor el pinolero") || query.equals("rincon pinolero")
-                        || query.equals("el sopon") || query.equals("tapadrisimo nicaragua")
-                        || query.equals("la basilica")|| query.equals("la avenida")|| query.equals("23 bar")
-                        || query.equals("la avaenida")|| query.equals("la avaenida")|| query.equals("la avaenida")
-                        || query.equals("la avaenida")|| query.equals("la avaenida")|| query.equals("la avaenida")
-                        || query.equals("la avaenida")|| query.equals("la avaenida")|| query.equals("la avaenida")
-                        || query.equals("la avaenida")|| query.equals("la avaenida")|| query.equals("la avaenida")
-                        || query.equals("la avaenida")|| query.equals("la avaenida")|| query.equals("la avaenida")
-                        || query.equals("la avaenida")) {
-                    intent.putExtra("nombre", query);
-                }else Toast.makeText(busqueda.this, "No se encontro el restaurante", Toast.LENGTH_SHORT).show();
-                startActivity(intent);
+            public boolean onQueryTextChange(String query) {
+
+                return true;
             }
         });
-
-        //busqueda.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-           // @Override
-            //public boolean onQueryTextSubmit(String query) {
-            //    return true;
-           // }
-
-           // @Override
-          //  public boolean onQueryTextChange(String query) {
-         //       return true;
-           // }
-        //});
 
         //busqueda.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
         //busqueda.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

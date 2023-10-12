@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -19,12 +20,22 @@ public class vista_locales extends AppCompatActivity {
 
         int numero_lista = 0;
 
+         ImageView bt_atras;
+
         private Spinner spinnerlocales;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vista_locales);
+        bt_atras = findViewById(R.id.bt_atras_vista_locales);
+        bt_atras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(vista_locales.this,busqueda.class);
+                startActivity(i);
+            }
+        });
 
         lista = findViewById(R.id.lista_local);
 

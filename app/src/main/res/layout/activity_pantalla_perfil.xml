@@ -8,14 +8,13 @@
     android:orientation="vertical"
     tools:context=".pantalla_perfil" >
 
-    <ImageButton
+    <ImageView
         android:id="@+id/bt_atras_perfil"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/degradado_fondo2"
-        app:srcCompat="@drawable/im18_nuevo" />
+        android:layout_width="25dp"
+        android:layout_height="49dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        app:srcCompat="@drawable/atras2" />
 
     <LinearLayout
         android:layout_width="match_parent"

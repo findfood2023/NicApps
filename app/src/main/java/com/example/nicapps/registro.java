@@ -24,6 +24,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class registro extends AppCompatActivity {
@@ -54,7 +55,7 @@ public class registro extends AppCompatActivity {
                 String telefono = CT_Telefono2.getText().toString();
                 String contrasena = CT_Contrasena2.getText().toString();
                 String confirmar = CT_ConfirmarContrasena.getText().toString();
-                String correo = Correo_Electronico.getText().toString();
+                String correo = Correo_Electronico.getText().toString().toLowerCase(Locale.ROOT);
 
                 if (nombre.isEmpty() && telefono.isEmpty() && contrasena.isEmpty() && confirmar.isEmpty() && correo.isEmpty()) {
                     Toast.makeText(registro.this, "Por favor rellene todo los campos", Toast.LENGTH_SHORT).show();
@@ -82,7 +83,7 @@ public class registro extends AppCompatActivity {
                 } else {
 
                     //validar el correo electronico
-                    boolean respuesta = correo.matches("^[a-zA-Z_!#$%'*+/=?`{}~^.-]+@[a-zA-Z0-9.-]+$");
+                    boolean respuesta = correo.matches("^[a-zA-Z0-9_!#$%'*+/=?`{}~^.-]+@[a-zA-Z.-]+$");
                     if (respuesta == true) {
 
                         //verificacion del telefono
@@ -90,12 +91,11 @@ public class registro extends AppCompatActivity {
                             Toast.makeText(registro.this, "El número telefonico debe tener 8 dígitos exactos", Toast.LENGTH_SHORT).show();
                             CT_Telefono2.requestFocus();
                         } else {
-
-                            //verificar contraseñas
-                            if (contrasena.length() < 8) {
+                            //verificar contraseñas: min 8 max 12
+                            if (contrasena.length() < 7 || contrasena.length() > 13) {
                                 Toast.makeText(registro.this, "La contraseña debe tener al menos 8 caracteres", Toast.LENGTH_SHORT).show();
                                 CT_Contrasena2.requestFocus();
-                            } else if (confirmar.length() < 8) {
+                            } else if (confirmar.length() < 7 || confirmar.length() > 13) {
                                 Toast.makeText(registro.this, "La segunda contraseña debe tener al menos 8 caracteres", Toast.LENGTH_SHORT).show();
                                 CT_ConfirmarContrasena.requestFocus();
 
@@ -109,47 +109,48 @@ public class registro extends AppCompatActivity {
 
                                         if (conexion == true) {
 
+                                            BT_Registro2.setEnabled(false);
+                                            BT_Registro2.setText("Espere...");
+
                                             //guardar el usuario en Autentication
                                             FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                                            mAuth.createUserWithEmailAndPassword(correo, contrasena)
-                                                    .addOnCompleteListener(registro.this, new OnCompleteListener<AuthResult>() {
-                                                        @Override
-                                                        public void onComplete(@NonNull Task<AuthResult> task) {
-                                                            if (task.isSuccessful()) {
-                                                                Toast.makeText(registro.this, "Usuario creado correctamente", Toast.LENGTH_SHORT).show();
-                                                                //FirebaseUser user = mAuth.getCurrentUser();
-                                                            } else {
-                                                                Toast.makeText(registro.this, "Ocurrió un fallo", Toast.LENGTH_SHORT).show();
-                                                            }
-                                                        }
-                                                    });
+                                            mAuth.createUserWithEmailAndPassword(correo, contrasena).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                                    if (task.isSuccessful()) {
+                                                       // Toast.makeText(registro.this, "Usuario creado correctamente", Toast.LENGTH_SHORT).show();
+                                                        //FirebaseUser user = mAuth.getCurrentUser();
+                                                    } else {
+                                                        Toast.makeText(registro.this, "Ocurrió un fallo", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
 
                                             //guardar el nombre y telefono en firebase firestore
-                                            FirebaseFirestore firestore;
-                                            firestore = FirebaseFirestore.getInstance();
+                                            FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-                                            Map<String,Object> usuarios = new HashMap<>();
-                                            usuarios.put("nombre",CT_NombreCompleto);
-                                            usuarios.put("telefono",CT_Telefono2);
+                                            Map<String,Object> datosUsuario = new HashMap<>();
+                                            datosUsuario.put("nombre",nombre);
+                                            datosUsuario.put("telefono",telefono);
+                                            datosUsuario.put("correo",correo);
 
-                                            firestore.collection("usuarios").add(usuarios).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                            db.collection("usuarios").add(datosUsuario).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                                 @Override
                                                 public void onSuccess(DocumentReference documentReference) {
-                                                    Toast.makeText(registro.this, "Guardado satisfactorio", Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(registro.this, "Usuario creado correctamente", Toast.LENGTH_LONG).show();
                                                     Intent i = new Intent(registro.this, MainActivity2.class);
                                                     startActivity(i);
                                                 }
                                             }).addOnFailureListener(new OnFailureListener() {
                                                 @Override
                                                 public void onFailure(@NonNull Exception e) {
-                                                    Toast.makeText(registro.this, "No se pudo guardar", Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(registro.this, "ERROR: "+e.getMessage(), Toast.LENGTH_LONG).show();
                                                 }
                                             });
 
                                         }else
                                             Toast.makeText(registro.this, "Por favor conectese a internet", Toast.LENGTH_SHORT).show();
-                                    }
-                                    Toast.makeText(registro.this, "Tiene que aceptar los terminos y condiciones", Toast.LENGTH_SHORT).show();
+                                    }else Toast.makeText(registro.this, "Tiene que aceptar los terminos y condiciones", Toast.LENGTH_SHORT).show();
                                 }else {
                                     Toast.makeText(registro.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
                                     CT_Contrasena2.requestFocus();
